@@ -28,17 +28,18 @@ sheet = service.spreadsheets()
 def login():
     st.title("Uloguj se!")
 
-    username = st.text_input("Korisničko ime")
-    password = st.text_input("Lozinka", type="password")
-
-    if st.button("Uloguj se"):
-        if username in valid_users and valid_users[username] == password:
-            st.session_state.logged_in = True
-            st.session_state.username = username
-            st.success(f"Dobrodošli, {username}!")
-            st.rerun()
-        else:
-            st.error("Nevalidno korisničko ime ili lozinka.")
+    with st.form("logovanje"):
+        username = st.text_input("Korisničko ime")
+        password = st.text_input("Lozinka", type="password")
+    
+        if st.form_submit_button("Uloguj se"):
+            if username in valid_users and valid_users[username] == password:
+                st.session_state.logged_in = True
+                st.session_state.username = username
+                st.success(f"Dobrodošli, {username}!")
+                st.rerun()
+            else:
+                st.error("Nevalidno korisničko ime ili lozinka.")
 
 # Funkcija za čitanje podataka iz Google Sheet-a
 def citaj_podatke():
