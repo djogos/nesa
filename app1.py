@@ -36,6 +36,7 @@ def login():
             st.session_state.logged_in = True
             st.session_state.username = username
             st.success(f"Dobrodošli, {username}!")
+            st.rerun()
         else:
             st.error("Nevalidno korisničko ime ili lozinka.")
 
