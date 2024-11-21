@@ -67,9 +67,6 @@ def upisi_podatke(df):
                           valueInputOption='RAW', body=body).execute()
 tipovi_proizvoda = ['drvo', 'drvo lr', 'drvo db', 'pokl tegle', 'satna', 'staklo ili ambalaža']
 
-# Učitavanje podataka
-df = citaj_podatke()
-
 # Логика за приступ заштићеним садржајима
 def main():
     if "logged_in" not in st.session_state or not st.session_state.logged_in:
@@ -81,6 +78,8 @@ def main():
             st.session_state.username = None
             st.experimental_rerun()  # Поново учитај апликацију
         # Dugme za osvežavanje u sidebar-u
+        # Učitavanje podataka
+        df = citaj_podatke()
         if st.sidebar.button("Osveži podatke"):
             # Brisanje keša
             st.cache_data.clear()
