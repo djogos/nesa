@@ -51,8 +51,9 @@ def citaj_podatke():
          'Tip',
          'Cena',
          'Zalihe',
-         'Status',
-         'Napomene'])
+         'Pakovanje',
+         'Napomene',
+         'Zbir'])
     else:
         temp = pd.DataFrame(values[1:], columns=values[0])
         temp['Cena'] = temp['Cena'].fillna('0')
