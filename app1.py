@@ -108,7 +108,7 @@ else:
             tip = st.selectbox("Tip:", tipovi_proizvoda)
             cena = st.number_input("Cena:", min_value=0.0, step=0.01)
             zalihe = st.number_input("Zalihe:", min_value=0.0, step=0.01)
-            pakovanje = naziv = st.text_input("Pakovanje:")
+            pakovanje = st.text_input("Pakovanje:")
             napomene = st.text_input("Napomene:")
             if st.form_submit_button("Dodaj"):
                 if naziv in df['Naziv stavke'].values:
