@@ -73,7 +73,7 @@ def upisi_podatke(df):
     body = {'values': vrednosti}
     sheet.values().update(spreadsheetId=SPREADSHEET_ID, range='Magacin',
                           valueInputOption='RAW', body=body).execute()
-tipovi_proizvoda = ['drvo', 'drvo lr', 'drvo db', 'pokl tegle', 'satna', 'staklo ili ambalaža']
+tipovi_proizvoda = ['satna', 'ambalaža', 'drvo', 'boca', 'razno', 'staklo', 'pribor', 'oprema']
 
 
 if "logged_in" not in st.session_state or not st.session_state.logged_in:
@@ -103,17 +103,18 @@ else:
     with tab1:
         st.header("Dodaj novi proizvod")
         with st.form("novi_proizvod"):
+            sifra = st.text_input("Id:")
             naziv = st.text_input("Naziv:")
             tip = st.selectbox("Tip:", tipovi_proizvoda)
             cena = st.number_input("Cena:", min_value=0.0, step=0.01)
             zalihe = st.number_input("Zalihe:", min_value=0.0, step=0.01)
-            status = 'Nepoznat'
+            pakovanje = naziv = st.text_input("Pakovanje:")
             napomene = st.text_input("Napomene:")
             if st.form_submit_button("Dodaj"):
                 if naziv in df['Naziv stavke'].values:
                     st.error("Proizvod sa tim nazivom već postoji!")
                 else:
-                    novi_proizvod = pd.DataFrame([[len(df) + 1, naziv, tip, cena, zalihe, status, napomene]], columns=df.columns)
+                    novi_proizvod = pd.DataFrame([sifra, naziv, tip, cena, zalihe, status, napomene]], columns=df.columns)
                     df = pd.concat([df, novi_proizvod], ignore_index=True)
                     upisi_podatke(df)
                     st.success("Proizvod dodat!")
