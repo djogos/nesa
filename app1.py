@@ -59,6 +59,9 @@ def citaj_podatke():
         temp['Cena'] = temp['Cena'].apply(lambda x: x.replace('.', '').replace(',', '.'))
         temp['Cena'] = temp['Cena'].str.extract('(-{0,1}\d+\.\d+)', expand=False).astype(float)
         temp['Zalihe'] = temp['Zalihe'].astype(float, errors='ignore')
+        temp['Zbir'] = temp['Zbir'].fillna('0')
+        temp['Zbir'] = temp['Zbir'].apply(lambda x: x.replace('.', '').replace(',', '.'))
+        temp['Zbir'] = temp['Zbir'].str.extract('(-{0,1}\d+\.\d+)', expand=False).astype(float)
         return temp
 
 # Funkcija za upisivanje podataka u Google Sheet
