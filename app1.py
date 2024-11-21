@@ -55,8 +55,9 @@ def citaj_podatke():
          'Napomene'])
     else:
         temp = pd.DataFrame(values[1:], columns=values[0])
-        temp['Cena'] = temp['Cena'].apply(lambda x: x[4:].replace('.', '').replace(',', '.'))
-        temp[['Cena', 'Zalihe']] = temp[['Cena', 'Zalihe']].astype(float)
+        temp['Cena'] = temp['Cena'].apply(lambda x: x.replace('.', '').replace(',', '.'))
+        temp['Cena'] = temp['Cena'].str.extract('(-{0,1}\d+\.\d+)', expand=False).astype(float)
+        temp['Zalihe'] = temp['Zalihe'].astype(float)
         return temp
 
 # Funkcija za upisivanje podataka u Google Sheet
