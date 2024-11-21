@@ -3,23 +3,22 @@ from googleapiclient.discovery import build
 from google.oauth2 import service_account
 import os
 import sys
-#sys.path.append("..\\.venv\\Lib\\site-packages")
 import streamlit as st
 import time
 
-# Putanja do JSON ključa
-SERVICE_ACCOUNT_FILE = 'nesa-magacin-5074917e012c.json'
+# Учитавање креденцијала из Streamlit тајни
+credentials_info = st.secrets["google_credentials"]
 
-# Opseg API-ja
+# Креирање Google Service Account Credentials објекта
+creds = service_account.Credentials.from_service_account_info(
+    credentials_info
+)
+
+# Постављање параметара за Google Sheets API
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
-
-# ID vašeg Google Sheet-a (nalazi se u URL-u)
 SPREADSHEET_ID = '1A1A4DK_rEu6Tc5EAgaSXo3fHJQc4py8AGXEShFzUFtw'
 
-creds = None
-creds = service_account.Credentials.from_service_account_file(
-        SERVICE_ACCOUNT_FILE, scopes=SCOPES)
-
+# Креирање сервисног објекта
 service = build('sheets', 'v4', credentials=creds)
 sheet = service.spreadsheets()
 
