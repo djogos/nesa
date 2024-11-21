@@ -16,7 +16,7 @@ creds = service_account.Credentials.from_service_account_info(
 
 # Постављање параметара за Google Sheets API
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
-SPREADSHEET_ID = '1A1A4DK_rEu6Tc5EAgaSXo3fHJQc4py8AGXEShFzUFtw'
+SPREADSHEET_ID = st.secrets["spreadsheet"]["sheet"]
 
 # Креирање сервисног објекта
 service = build('sheets', 'v4', credentials=creds)
