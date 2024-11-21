@@ -79,7 +79,7 @@ tipovi_proizvoda = ['satna', 'ambalaža', 'drvo', 'boca', 'razno', 'staklo', 'pr
 if "logged_in" not in st.session_state or not st.session_state.logged_in:
     login()  # Ако није пријављен, позови login()
 else:
-    if st.sidebar.button("Logout"):
+    if st.sidebar.button("Izloguj se"):
         st.session_state.logged_in = False
         st.session_state.username = None
         st.rerun()  # Поново учитај апликацију
@@ -142,6 +142,7 @@ else:
             with col1:
                 if st.form_submit_button("Uvećaj"):
                     df.loc[indeks, 'Zalihe'] += x
+                    df.loc[indeks, 'Zbir'] = df.loc[indeks, 'Cena']*df.loc[indeks, 'Zalihe']
                     upisi_podatke(df)
                     st.success(f"Zalihe proizvoda '{izabrani_proizvod}' uvećane za {x}.")
             with col2:
