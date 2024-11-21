@@ -6,7 +6,7 @@ import sys
 import streamlit as st
 import time
 
-users = st.users
+users = st.secrets["users"]
 print(users)
 # Учитавање креденцијала из Streamlit тајни
 credentials_info = st.secrets["google_credentials"]
