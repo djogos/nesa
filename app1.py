@@ -92,7 +92,7 @@ def main():
         #    os._exit(0)
         
         # Kreiranje tabova
-        tab1, tab2, tab3, tab4 = st.tabs(["Dodaj proizvod", "Promeni stanje", "Obriši proizvod", "Prikaži stanje"])
+        tab4, tab2, tab1, tab3  = st.tabs(["Prikaži stanje", "Promeni stanje", "Dodaj proizvod", "Obriši proizvod"])
         
         # Tab 1: Dodaj proizvod
         with tab1:
