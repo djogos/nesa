@@ -142,18 +142,11 @@ else:
     # Tab 3: Obriši proizvod
     with tab3:
         st.header("Obriši proizvod")
-        # Funkcija za ažuriranje liste proizvoda u session_state
-        def update_product_list():
-            st.session_state.product_list = df['Naziv stavke'].tolist()
         
-        # Ako session_state nema listu proizvoda, inicijalizujemo je
-        if 'product_list' not in st.session_state:
-            update_product_list()
-        izabrani_proizvod = st.selectbox("Izaberite proizvod za brisanje:", st.session_state.product_list)
+        izabrani_proizvod = st.selectbox("Izaberite proizvod za brisanje:", df['Naziv stavke'])
         if st.button("Obriši"):
             df = df[df['Naziv stavke'] != izabrani_proizvod]
             upisi_podatke(df)
-            update_product_list()
             st.success("Proizvod obrisan!")
             st.rerun()
     
