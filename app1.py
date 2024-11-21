@@ -113,7 +113,13 @@ else:
             if st.form_submit_button("Dodaj"):
                 if naziv in df['Naziv stavke'].values:
                     st.error("Proizvod sa tim nazivom već postoji!")
+                if sifra in df['Id'].values:
+                    st.error("Proizvod sa tim id-jem već postoji!")
                 else:
+                    if sifra.strip() == "":
+                        st.error("Morate popuniti polje Id:")
+                    if naziv.strip() == "":
+                        st.error("Morate popuniti polje Naziv:")
                     zbir = cena*zalihe
                     novi_proizvod = pd.DataFrame([sifra, naziv, tip, cena, zalihe, pakovanje, napomene, zbir], columns=df.columns)
                     df = pd.concat([df, novi_proizvod], ignore_index=True)
