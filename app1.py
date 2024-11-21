@@ -61,8 +61,8 @@ if st.sidebar.button("Osveži podatke"):
     df = citaj_podatke()
     st.success("Podaci su osveženi!")
     
-if st.sidebar.button("Zatvori aplikaciju"):
-    os._exit(0)
+#if st.sidebar.button("Zatvori aplikaciju"):
+#    os._exit(0)
 
 # Kreiranje tabova
 tab1, tab2, tab3, tab4 = st.tabs(["Dodaj proizvod", "Promeni stanje", "Obriši proizvod", "Prikaži stanje"])
