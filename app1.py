@@ -71,6 +71,7 @@ tipovi_proizvoda = ['drvo', 'drvo lr', 'drvo db', 'pokl tegle', 'satna', 'staklo
 def main():
     if "logged_in" not in st.session_state or not st.session_state.logged_in:
         login()  # Ако није пријављен, позови login()
+        st.rerun()
     else:
         st.write(f"Добродошли {st.session_state.username}, ово је заштићена страница!")
         if st.sidebar.button("Logout"):
