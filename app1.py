@@ -6,8 +6,8 @@ import sys
 import streamlit as st
 import time
 
-users = st.secrets["users"]
-print(users)
+valid_users = st.secrets["users"]
+
 # Учитавање креденцијала из Streamlit тајни
 credentials_info = st.secrets["google_credentials"]
 
@@ -23,6 +23,21 @@ SPREADSHEET_ID = st.secrets["spreadsheet"]["sheet"]
 # Креирање сервисног објекта
 service = build('sheets', 'v4', credentials=creds)
 sheet = service.spreadsheets()
+
+# Логика за пријаву
+def login():
+    st.title("Login Page")
+
+    username = st.text_input("Username")
+    password = st.text_input("Password", type="password")
+
+    if st.button("Login"):
+        if username in valid_users and valid_users[username] == password:
+            st.session_state.logged_in = True
+            st.session_state.username = username
+            st.success(f"Добродошли, {username}!")
+        else:
+            st.error("Невалидно корисничко име или лозинка.")
 
 # Funkcija za čitanje podataka iz Google Sheet-a
 def citaj_podatke():
@@ -55,7 +70,17 @@ tipovi_proizvoda = ['drvo', 'drvo lr', 'drvo db', 'pokl tegle', 'satna', 'staklo
 # Učitavanje podataka
 df = citaj_podatke()
 
-# Dugme za osvežavanje u sidebar-u
+# Логика за приступ заштићеним садржајима
+def main():
+    if "logged_in" not in st.session_state or not st.session_state.logged_in:
+        login()  # Ако није пријављен, позови login()
+    else:
+        st.write(f"Добродошли {st.session_state.username}, ово је заштићена страница!")
+        if st.sidebar.button("Logout"):
+            st.session_state.logged_in = False
+            st.session_state.username = None
+            st.experimental_rerun()  # Поново учитај апликацију
+        # Dugme za osvežavanje u sidebar-u
 if st.sidebar.button("Osveži podatke"):
     # Brisanje keša
     st.cache_data.clear()
@@ -140,4 +165,8 @@ with tab4:
             upisi_podatke(edited_df)
         else:
             st.warning("Niste napravili nikakve promene.")
+
+if __name__ == "__main__":
+    main()
+
             
