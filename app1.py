@@ -123,7 +123,8 @@ else:
                     zbir = cena*zalihe
                     novi_proizvod = pd.DataFrame([[sifra, naziv, tip, cena, zalihe, pakovanje, napomene, zbir]], columns=df.columns)
                     df = pd.concat([df, novi_proizvod], ignore_index=True)
-                    upisi_podatke(df)
+                    st.write(df)
+                    #upisi_podatke(df)
                     st.success("Proizvod dodat!")
                     st.rerun()
     
