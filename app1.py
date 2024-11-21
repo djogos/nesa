@@ -145,9 +145,10 @@ def main():
             with st.form("obrisi_proizvod"):
                 izabrani_proizvod = st.selectbox("Izaberite proizvod za brisanje:", df['Naziv stavke'])
                 if st.form_submit_button("Obriši"):
-                    df = df[df['Naziv stavke'] != izabrani_proizvod]
-                    upisi_podatke(df)
-                    st.success("Proizvod obrisan!")
+                    st.write(izabrani_proizvod)
+                    # df = df[df['Naziv stavke'] != izabrani_proizvod]
+                    #upisi_podatke(df)
+                    #st.success("Proizvod obrisan!")
         
         # Tab 4: Prikaži stanje
         with tab4:
