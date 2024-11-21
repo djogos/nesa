@@ -111,6 +111,7 @@ else:
                     df = pd.concat([df, novi_proizvod], ignore_index=True)
                     upisi_podatke(df)
                     st.success("Proizvod dodat!")
+                    st.rerun()
     
     # Tab 2: Promeni stanje
     with tab2:
