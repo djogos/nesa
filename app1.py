@@ -26,18 +26,18 @@ sheet = service.spreadsheets()
 
 # Логика за пријаву
 def login():
-    st.title("Login Page")
+    st.title("Uloguj se!")
 
-    username = st.text_input("Username")
-    password = st.text_input("Password", type="password")
+    username = st.text_input("Korisničko ime")
+    password = st.text_input("Lozinka", type="password")
 
-    if st.button("Login"):
+    if st.button("Uloguj se"):
         if username in valid_users and valid_users[username] == password:
             st.session_state.logged_in = True
             st.session_state.username = username
-            st.success(f"Добродошли, {username}!")
+            st.success(f"Dobrodošli, {username}!")
         else:
-            st.error("Невалидно корисничко име или лозинка.")
+            st.error("Nevalidno korisničko ime ili lozinka.")
 
 # Funkcija za čitanje podataka iz Google Sheet-a
 def citaj_podatke():
@@ -76,7 +76,7 @@ def main():
         if st.sidebar.button("Logout"):
             st.session_state.logged_in = False
             st.session_state.username = None
-            st.experimental_rerun()  # Поново учитај апликацију
+            st.rerun()  # Поново учитај апликацију
         # Dugme za osvežavanje u sidebar-u
         # Učitavanje podataka
         df = citaj_podatke()
