@@ -154,7 +154,7 @@ else:
             upisi_podatke(df)
             update_product_list()
             st.success("Proizvod obrisan!")
-            st.write(df)
+            st.rerun()
     
     # Tab 4: Prikaži stanje
     with tab4:
