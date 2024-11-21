@@ -121,7 +121,7 @@ else:
                     st.error("Morate popuniti polje Naziv:")
                 else:
                     zbir = cena*zalihe
-                    novi_proizvod = pd.DataFrame([sifra, naziv, tip, cena, zalihe, pakovanje, napomene, zbir], columns=df.columns)
+                    novi_proizvod = pd.DataFrame([[sifra, naziv, tip, cena, zalihe, pakovanje, napomene, zbir]], columns=df.columns)
                     df = pd.concat([df, novi_proizvod], ignore_index=True)
                     upisi_podatke(df)
                     st.success("Proizvod dodat!")
