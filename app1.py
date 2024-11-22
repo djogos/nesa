@@ -59,7 +59,7 @@ def citaj_podatke():
         temp['Cena'] = temp['Cena'].fillna('0')
         temp['Cena'] = temp['Cena'].apply(lambda x: x.replace('.', '').replace(',', '.'))
         temp['Cena'] = temp['Cena'].str.extract('(-{0,1}\d+\.\d+)', expand=False).astype(float).fillna(0)
-        temp['Zalihe'] = temp['Zalihe'].astype(float, errors='ignore')
+        temp['Zalihe'] = temp['Zalihe'].astype(float, errors='ignore').fillna(0)
         temp['Zbir'] = temp['Zbir'].fillna('0')
         temp['Zbir'] = temp['Zbir'].apply(lambda x: x.replace('.', '').replace(',', '.'))
         temp['Zbir'] = temp['Zbir'].str.extract('(-{0,1}\d+\.\d+)', expand=False).astype(float).fillna(0)
