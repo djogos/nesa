@@ -178,9 +178,10 @@ else:
         if st.button("Potvrdi promene"):
             # Provera da li je DataFrame izmenjen
             if edited_df is not df:
-                st.success("Podaci su uspešno izmenjeni!")
                 # Upisivanje izmenjenog DataFrame-a u Google Sheet
+                edited_df['Zbir'] = edited_df['Cena'].astype(float)*edited_df['Zalihe'].astype(float)
                 upisi_podatke(edited_df)
+                st.success("Podaci su uspešno izmenjeni!")
             else:
                 st.warning("Niste napravili nikakve promene.")
 
