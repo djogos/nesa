@@ -58,11 +58,11 @@ def citaj_podatke():
         temp = pd.DataFrame(values[1:], columns=values[0])
         temp['Cena'] = temp['Cena'].fillna('0')
         temp['Cena'] = temp['Cena'].apply(lambda x: x.replace('.', '').replace(',', '.'))
-        temp['Cena'] = temp['Cena'].str.extract('(-{0,1}\d+\.\d+)', expand=False).astype(float)
+        temp['Cena'] = temp['Cena'].str.extract('(-{0,1}\d+\.\d+)', expand=False).astype(float).fillna(0)
         temp['Zalihe'] = temp['Zalihe'].astype(float, errors='ignore')
         temp['Zbir'] = temp['Zbir'].fillna('0')
         temp['Zbir'] = temp['Zbir'].apply(lambda x: x.replace('.', '').replace(',', '.'))
-        temp['Zbir'] = temp['Zbir'].str.extract('(-{0,1}\d+\.\d+)', expand=False).astype(float)
+        temp['Zbir'] = temp['Zbir'].str.extract('(-{0,1}\d+\.\d+)', expand=False).astype(float).fillna(0)
         return temp
 
 # Funkcija za upisivanje podataka u Google Sheet
