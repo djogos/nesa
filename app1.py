@@ -142,14 +142,15 @@ else:
             col1, col2 = st.columns(2)
             with col1:
                 if st.form_submit_button("Uvećaj"):
-                    df.loc[indeks, 'Zalihe'] += x
-                    df.loc[indeks, 'Zbir'] = df.loc[indeks, 'Cena']*df.loc[indeks, 'Zalihe']
+                    df.loc[indeks, 'Zalihe'] = float(df.loc[indeks, 'Zalihe']) + float(x)
+                    df.loc[indeks, 'Zbir'] = float(df.loc[indeks, 'Cena'])*float(df.loc[indeks, 'Zalihe'])
                     upisi_podatke(df)
                     st.success(f"Zalihe proizvoda '{izabrani_proizvod}' uvećane za {x}.")
             with col2:
                 if st.form_submit_button("Smanji"):
                     if df['Zalihe'][indeks] >= x:
-                        df.loc[indeks, 'Zalihe'] -= x
+                        df.loc[indeks, 'Zalihe'] = float(df.loc[indeks, 'Zalihe']) - float(x)
+                        df.loc[indeks, 'Zbir'] = float(df.loc[indeks, 'Cena'])*float(df.loc[indeks, 'Zalihe'])
                         upisi_podatke(df)
                         st.success(f"Zalihe proizvoda '{izabrani_proizvod}' smanjene za {x}.")
                     else:
