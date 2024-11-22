@@ -148,7 +148,7 @@ else:
                     st.success(f"Zalihe proizvoda '{izabrani_proizvod}' uvećane za {x}.")
             with col2:
                 if st.form_submit_button("Smanji"):
-                    if df['Zalihe'][indeks] >= x:
+                    if float(df['Zalihe'][indeks]) >= x:
                         df.loc[indeks, 'Zalihe'] = float(df.loc[indeks, 'Zalihe']) - float(x)
                         df.loc[indeks, 'Zbir'] = float(df.loc[indeks, 'Cena'])*float(df.loc[indeks, 'Zalihe'])
                         upisi_podatke(df)
