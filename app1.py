@@ -184,6 +184,7 @@ else:
                 edited_df['Zbir'] = edited_df['Cena'] * edited_df['Zalihe']
                 upisi_podatke(edited_df)
                 df = edited_df
+                st.rerun()
                 st.success("Podaci su uspešno izmenjeni!")
             else:
                 st.warning("Niste napravili nikakve promene.")
