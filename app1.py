@@ -126,7 +126,7 @@ else:
                     #st.write(df)
                     upisi_podatke(df)
                     st.success("Proizvod dodat!")
-                    st.rerun()
+                    #st.rerun()
     
     # Tab 2: Promeni stanje
     with tab2:
