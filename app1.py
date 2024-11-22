@@ -179,7 +179,9 @@ else:
             # Provera da li je DataFrame izmenjen
             if edited_df is not df:
                 # Upisivanje izmenjenog DataFrame-a u Google Sheet
-                edited_df['Zbir'] = edited_df['Cena'].astype(float, errors='ignore').fillna(0)*edited_df['Zalihe'].astype(float, errors='ignore').fillna(0)
+                edited_df['Cena'] = edited_df['Cena'].astype(float, errors='ignore').fillna(0)
+                edited_df['Zalihe'] = edited_df['Zalihe'].astype(float, errors='ignore').fillna(0)
+                edited_df['Zbir'] = edited_df['Cena']*edited_df['Zalihe']
                 upisi_podatke(edited_df)
                 st.success("Podaci su uspešno izmenjeni!")
             else:
