@@ -113,11 +113,11 @@ else:
             if st.form_submit_button("Dodaj"):
                 if naziv in df['Naziv stavke'].values:
                     st.error("Proizvod sa tim nazivom već postoji!")
-                if sifra in df['Id'].values:
+                elif sifra in df['Id'].values:
                     st.error("Proizvod sa tim id-jem već postoji!")
-                if sifra.strip() == "":
+                elif sifra.strip() == "":
                         st.error("Morate popuniti polje Id:")
-                if naziv.strip() == "":
+                elif naziv.strip() == "":
                     st.error("Morate popuniti polje Naziv:")
                 else:
                     zbir = cena*zalihe
