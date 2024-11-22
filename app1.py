@@ -183,6 +183,7 @@ else:
                 edited_df['Zalihe'] = pd.to_numeric(edited_df['Zalihe'], errors='coerce').fillna(0)
                 edited_df['Zbir'] = edited_df['Cena'] * edited_df['Zalihe']
                 upisi_podatke(edited_df)
+                df = edited_df
                 st.success("Podaci su uspešno izmenjeni!")
             else:
                 st.warning("Niste napravili nikakve promene.")
